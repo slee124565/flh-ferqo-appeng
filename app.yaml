@@ -1,5 +1,6 @@
 #application: flh-ferqo-appeng
 #version: 1
+service: freqoserv
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -11,8 +12,13 @@ handlers:
   script: mysite.wsgi.application
 
 libraries:
+- name: ssl
+  version: latest
 - name: django
   version: "1.11"
+
+env_variables:
+  GAE_USE_SOCKETS_HTTPLIB : 'true'
 
 # Google App Engine limits application deployments to 10,000 uploaded files per
 # version. The skip_files section allows us to skip virtual environment files

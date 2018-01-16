@@ -79,6 +79,15 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
+if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine/'):
+    pass
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 
 # Password validation
@@ -118,3 +127,54 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+FIREBASE_DBS = {
+    'default': {
+        'cert_file': './certs/flh-pvstation-firebase-adminsdk-s0t72-28fcd7deca.json',
+        'db_url_root': 'https://flh-pvstation.firebaseio.com/'
+    },
+    'test': {
+        'cert_file': './certs/test-fbauth-flh-ec139e7a820c.json',
+        'db_url_root': 'https://test-fbauth-flh.firebaseio.com/'
+    }
+}
+
+# Logging
+# https://docs.djangoproject.com/en/1.11/topics/logging/
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,  # this fixes the problem
+
+    'formatters': {
+        'standard': {
+            'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
+        },
+    },
+
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "level": "DEBUG",
+            "formatter": "standard",
+            "stream": "ext://sys.stdout"
+        },
+    },
+
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO'
+    },
+
+    'loggers': {
+        'firebasedb': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False
+        },
+        'clients': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False
+        },
+    }
+}
