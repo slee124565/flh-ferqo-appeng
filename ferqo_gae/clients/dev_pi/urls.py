@@ -17,21 +17,10 @@ from django.conf.urls import url
 # from django.contrib import admin
 # from django.views.decorators.csrf import csrf_exempt
 
-from firebasedb.views import ReachabilityView as FirebaseDBReachabilityView
-from firebasedb.views import DeviceInfoView, DeviceListView
-
-from clients.views import ClientDevView
+from .views import DevicePiView
 
 urlpatterns = [
-    # url(r'^admin/', admin.site.urls),
 
-    # == backend api for admin start ==
-    url(r'^db/reachability/$', FirebaseDBReachabilityView.as_view(), name='db_reachability'),
-
-    url(r'^db/dev/(?P<pi_serial>\w+)/$', DeviceInfoView.as_view(), name='dev_info'),
-    url(r'^db/dev/$', DeviceListView.as_view(), name='dev_list'),
-
-    # == backend api for client start ==
-    url(r'^client/dev/$', ClientDevView.as_view(), name='client_dev_view'),
+    url(r'^client/dev/$', DevicePiView.as_view(), name='device_pi_view'),
 
 ]

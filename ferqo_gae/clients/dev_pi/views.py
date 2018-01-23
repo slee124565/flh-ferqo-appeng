@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 # from django.shortcuts import render
 from django.views.generic import View
-from django.http import HttpResponseRedirect, HttpResponseBadRequest
+from django.http import HttpResponsePermanentRedirect, HttpResponseBadRequest
 
 from clients.models import ClientDev
 
@@ -11,14 +11,14 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class ClientDevView(View):
+class DevicePiView(View):
 
     def get(self, request, *args, **kwargs):
         pi_serial = request.GET.get('pi_serial')
         client_dev = ClientDev(pi_serial)
         client_http_tunnel = client_dev.get_dev_http_url()
         if client_http_tunnel:
-            return HttpResponseRedirect(client_http_tunnel)
+            return HttpResponsePermanentRedirect(client_http_tunnel)
         else:
             return HttpResponseBadRequest('client device not reachable.')
 
