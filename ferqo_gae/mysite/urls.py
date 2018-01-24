@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 # from django.contrib import admin
 # from django.views.decorators.csrf import csrf_exempt
 
@@ -27,8 +27,11 @@ from backend_api.admin.views import FirebaseDBReachabilityView
 urlpatterns = [
     # url(r'^admin/', admin.site.urls),
 
-    # == backend api for admin start ==
-    url(r'^admin/views/db_reachability/$', FirebaseDBReachabilityView.as_view(), name='db_reachability_view'),
+    # == admin backend api sub-url include ==
+    url(r'^v1/a/', include('backend_api.admin.urls')),
+
+    # == user backend api sub-url include ==
+    url(r'^v1/u/', include('backend_api.firenotes.urls')),
 
     # url(r'^db/dev/(?P<pi_serial>\w+)/$', DeviceInfoView.as_view(), name='dev_info'),
     # url(r'^db/dev/$', DeviceListView.as_view(), name='dev_list'),

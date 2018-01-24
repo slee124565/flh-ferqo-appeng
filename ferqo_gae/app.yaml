@@ -8,8 +8,13 @@ threadsafe: yes
 handlers:
 - url: /static
   static_dir: static/
-- url: .*
+- url: /v1/.*
   script: mysite.wsgi.application
+- url: /frontend
+  static_dir: frontend/
+- url: /
+  static_files: frontend/index.html
+  upload: frontend/index.html
 
 libraries:
 - name: ssl

@@ -17,7 +17,7 @@ $(function(){
   // deploying the application to a live production environment, change to
   // https://backend-dot-<PROJECT_ID>.appspot.com as specified in the
   // backend's app.yaml file.
-  var backendHostUrl = 'https://freqoserv-dot-solar-cloud-143410.appspot.com/u';
+  var backendHostUrl = '/v1/u';
 
   // Initialize Firebase
   // TODO: Replace with your project's customized code snippet
