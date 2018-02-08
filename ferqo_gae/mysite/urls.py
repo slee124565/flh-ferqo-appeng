@@ -33,10 +33,13 @@ urlpatterns = [
     # == user backend api sub-url include ==
     url(r'^v1/u/', include('backend_api.firenotes.urls')),
 
-    # url(r'^db/dev/(?P<pi_serial>\w+)/$', DeviceInfoView.as_view(), name='dev_info'),
-    # url(r'^db/dev/$', DeviceListView.as_view(), name='dev_list'),
+    # == ifttt service api include ==
+    url(r'^ifttt/v1/', include('backend_api.ifttt.urls')),
 
-    # == backend api for client start ==
-    # url(r'^client/dev/$', ClientDevView.as_view(), name='client_dev_view'),
+    # == flh service api include ==
+    url(r'^s/h/', include('backend_api.services.hc2.urls')),
+
+    # url(r'^db/dev/(?P<pi_serial>\w+)/$', DeviceInfoView.as_view(), name='dev_info'),
+
 
 ]

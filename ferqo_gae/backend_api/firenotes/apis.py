@@ -14,6 +14,12 @@ logger = logging.getLogger(__name__)
 HTTP_REQUEST = google.auth.transport.requests.Request()
 
 
+class EchoAPI(View):
+
+    def get(self, request, *args, **kwargs):
+        return HttpResponse('OK')
+
+
 class DemoMessagesAPI(View):
 
     def get(self, request, *args, **kwargs):

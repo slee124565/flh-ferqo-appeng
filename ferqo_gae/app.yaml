@@ -10,6 +10,10 @@ handlers:
   static_dir: static/
 - url: /v1/.*
   script: mysite.wsgi.application
+- url: /ifttt/v1/.*
+  script: mysite.wsgi.application
+- url: /s/.*
+  script: mysite.wsgi.application
 - url: /frontend
   static_dir: frontend/
 - url: /
