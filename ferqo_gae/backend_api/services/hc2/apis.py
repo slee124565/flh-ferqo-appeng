@@ -62,3 +62,15 @@ class FlhHc2SceneControlAPI(View):
         except Exception as e:
             logger.warning('%s HTTP GET Exception' % self.__class__.__name__, exc_info=True)
             return ExceptionJsonResponse(e.message)
+
+    @classmethod
+    def api_test(cls):
+        import requests
+        payload = {
+            's': 'environmental information',
+            'c': 'en',
+            'k': 'showroom'
+        }
+        url = 'https://freqoserv-dot-solar-cloud-143410.appspot.com/s/h/i/sc'
+        r = requests.get(url, params=payload)
+        logger.info('{cls.__name__} api_test status code {r.status_code}\n {r.content}'.format(cls=cls, r=r))

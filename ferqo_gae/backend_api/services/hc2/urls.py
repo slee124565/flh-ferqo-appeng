@@ -7,8 +7,8 @@ from .apis import FlhHc2EchoAPI
 urlpatterns = [
 
     # == backend api for admin start ==
-    url(r'^i/sc$', FlhHc2SceneControlAPI.as_view(), 'services.hc2.scene_ctl'),
+    url(r'^i/sc$', FlhHc2SceneControlAPI.as_view()),
 
-    url(r'^echo$', FlhHc2EchoAPI.as_view(), 'services.hc2.echo'),
+    url(r'^echo$', FlhHc2EchoAPI.as_view()),
 ]
 

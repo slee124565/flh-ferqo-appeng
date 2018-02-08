@@ -1,5 +1,5 @@
 
-import requests
+import requests, json
 import logging
 logger = logging.getLogger(__name__)
 
@@ -22,7 +22,10 @@ class ClientHC2(object):
             'action': action
         }
         api_url = self.api_root_url + scene_ctl_path
-        r = requests.post(api_url, data=payload)
+        logger.debug('{obj.__class__.__name__} control_hc2_scene with {payload} and {url}'.format(
+            obj=self, payload=payload, url=api_url
+        ))
+        r = requests.post(api_url, data=json.dumps(payload))
         if r.status_code in range(200, 300):
             return True
         else:
